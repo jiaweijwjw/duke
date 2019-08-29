@@ -1,0 +1,28 @@
+public class Task {
+    // attributes of the tasks.
+    protected String description;
+    protected boolean isDone;
+
+    // constructor Task()
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
+    }
+
+    // getter method.
+    public String getStatusIcon() {
+        // if task is done, tick. if task is NOT done, cross.
+        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+    }
+
+    // to
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setAsDone() {
+        this.isDone = true;
+    }
+
+    //...
+}
