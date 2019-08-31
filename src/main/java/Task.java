@@ -15,14 +15,17 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    // to
+
     public String getDescription() {
         return this.description;
     }
 
+    // setter method.
     public void setAsDone() {
         this.isDone = true;
     }
 
-    //...
+    public String getTaskLabel() {
+        return " [" + getStatusIcon() + "] " + getDescription();
+    }
 }
