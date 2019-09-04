@@ -53,7 +53,16 @@ public class Duke {
     private static void PrintAcknowledgeDone(int taskNumber) {
         System.out.println(LINE);
         System.out.println("    Nice! I've marked this task as done:");
-        System.out.println("   " + taskList.get(taskNumber - 1).getStatusIcon() + " " + taskList.get(taskNumber - 1).getDescription());
+        // System.out.println("    " + taskList.get(taskNumber - 1).getStatusIcon() + " " + taskList.get(taskNumber - 1).getDescription());
+        System.out.println("    " + taskList.get(taskNumber - 1).getTaskLabel());
+        System.out.println(LINE);
+    }
+
+    private static void PrintAcknowledgeDelete(int taskNumber) {
+        System.out.println(LINE);
+        System.out.println("    Noted. The task has been removed from the list.");
+        // System.out.println("    " + taskList.get(taskNumber - 1).getStatusIcon() + " " + taskList.get(taskNumber - 1).getDescription());
+        System.out.println("    " + taskList.get(taskNumber - 1).getTaskLabel());
         System.out.println(LINE);
     }
 
@@ -161,6 +170,40 @@ public class Duke {
                 catch (NumberFormatException e) {
                     System.out.println(LINE);
                     System.out.println("    The item you wanted to mark as done is not provided as its index. Please input the index of the task.");
+                    System.out.println(LINE);
+                }
+
+                catch (DukeNoInfoException e) {
+                    System.out.println(LINE);
+                    System.out.println(e.Feedback());
+                    System.out.println(LINE);
+                }
+            }
+
+            else if (command.startsWith("delete") || command.startsWith("Delete")) {
+                try {
+
+                    String[] temp = command.split(" ");
+                    if (temp.length == 1) {
+                        throw new DukeNoInfoException(); // user input: done 'blank'.
+                    } else {
+                        int taskNumber = Integer.parseInt(temp[1]); // user input: done 'string'.
+                        PrintAcknowledgeDelete(taskNumber);
+                        taskList.remove(taskNumber - 1); // -1 to get the index of the task in myList. user input: done 'number not in list'.
+                        SaveToFile();
+                    }
+
+                }
+
+                catch (IndexOutOfBoundsException e) {
+                    System.out.println(LINE);
+                    System.out.println("    You can only remove a task from the list. Please input another index within the list.");
+                    System.out.println(LINE);
+                }
+
+                catch (NumberFormatException e) {
+                    System.out.println(LINE);
+                    System.out.println("    The item you wanted to delete is not provided as its index. Please input the index of the task.");
                     System.out.println(LINE);
                 }
 
