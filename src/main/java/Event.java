@@ -1,4 +1,9 @@
-public class Event extends Task {
+import java.io.Serializable;
+
+public class Event extends Task implements Serializable {
+
+    // private static final long serialVersionUID = 3L;
+
     // 'By' field is specific to Deadline class and is not in the Task class.
     protected String atWhere;
 

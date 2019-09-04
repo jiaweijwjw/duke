@@ -1,4 +1,9 @@
-public class Deadline extends Task {
+import java.io.Serializable;
+
+public class Deadline extends Task implements Serializable {
+
+    // private static final long serialVersionUID = 4L;
+
     // 'By' field is specific to Deadline class and is not in the Task class.
     protected String byWhen;
 

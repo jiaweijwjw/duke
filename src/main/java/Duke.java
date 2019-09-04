@@ -1,5 +1,11 @@
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
+import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Duke {
 
@@ -13,8 +19,9 @@ public class Duke {
     // Obj is the type of object to be stored in List. (type-safe list)
     // List<Obj> list = new ArrayList<Obj> ();
     // a list of Tasks objects.
-    private static List<Task> taskList = new ArrayList<Task>();
+    public static ArrayList<Task> taskList = new ArrayList<Task>();
 
+    // dd/mm/yyy
     private static void PrintGreeting() {
         System.out.println(LINE);
         System.out.println("   Hello! I'm Duke\n" + "   What can I do for you?\n");
@@ -52,10 +59,55 @@ public class Duke {
         System.out.println(LINE);
     }
 
-    // this line means this is the entry point to the program.
+    private static void SaveToFile() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("/Users/jiawei/Desktop/duke/data/duke.txt");
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(taskList);
+            objOut.close();
+            fileOut.close();
+            System.out.println(LINE);
+            System.out.println("    File has been successfully saved!");
+            System.out.println(LINE);
+        } catch (IOException e) {
+            System.out.println(LINE);
+            e.printStackTrace();
+            System.out.println(LINE);
+        }
+    }
+
+    private static void LoadFromFile() {
+        try {
+
+            FileInputStream fileIn = new FileInputStream("/Users/jiawei/Desktop/duke/data/duke.txt");
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            // taskList = (ArrayList<Task>) Arrays.asList((Task[]) objIn.readObject());
+            taskList = (ArrayList) objIn.readObject();
+            objIn.close();
+            fileIn.close();
+
+            System.out.println(LINE);
+            System.out.println("    File has been successfully loaded!");
+            System.out.println(LINE);
+        } catch (IOException e) {
+            System.out.println(LINE);
+            e.printStackTrace();
+            System.out.println(LINE);
+        } catch (ClassNotFoundException e) {
+            System.out.println(LINE);
+            System.out.println("    Class not found.");
+            e.printStackTrace();
+            System.out.println(LINE);
+        }
+    }
+
+
+    // the following line indicates the entry point to the program.
     public static void main(String[] args) {
 
         PrintGreeting();
+
+        LoadFromFile();
 
         // keep reading input till there is "bye".
         while(true) {
@@ -89,22 +141,28 @@ public class Duke {
                         int taskNumber = Integer.parseInt(temp[1]); // user input: done 'string'.
                         taskList.get(taskNumber - 1).setAsDone(); // -1 to get the index of the task in myList. user input: done 'number not in list'.
                         PrintAcknowledgeDone(taskNumber);
+                        SaveToFile();
                     }
 
-                } catch (IndexOutOfBoundsException e) {
+                }
+                // if want to catch 2 exceptions that are can be handled the same way, use (exception1 | exception2).
+                catch (IndexOutOfBoundsException e) {
                     System.out.println(LINE);
                     System.out.println("    You can only mark a task in the list as done. Please input another index within the list.");
                     System.out.println(LINE);
-                } catch (NumberFormatException e) {
+                }
+
+                catch (NumberFormatException e) {
                     System.out.println(LINE);
                     System.out.println("    The item you wanted to mark as done is not provided as its index. Please input the index of the task.");
                     System.out.println(LINE);
-                } catch (DukeNoInfoException e) {
+                }
+
+                catch (DukeNoInfoException e) {
                     System.out.println(LINE);
                     System.out.println(e.Feedback());
                     System.out.println(LINE);
                 }
-                // if want to catch 2 exceptions that are can be handled the same way, use (exception1 | exception2).
             }
 
             else { // there is a new task.
@@ -122,6 +180,7 @@ public class Duke {
                                 Todo newToDo = new Todo(temp[1]); // temp[1] is the remaining words after extracting first word.
                                 taskList.add(newToDo);
                                 PrintTaskAdded();
+                                SaveToFile();
                                 break;
                             }
 
@@ -136,8 +195,7 @@ public class Duke {
 
                                 if (tempEvent.length == 1) {
                                     throw new DukeNoFullInfoException();
-                                }
-                                else {
+                                } else {
 
                                     // input: event xxxx /at cccc
                                     // temp: event | xxxx /at cccc
@@ -154,6 +212,7 @@ public class Duke {
                                         Event newEvent = new Event(eventDescription, eventAt);
                                         taskList.add(newEvent);
                                         PrintTaskAdded();
+                                        SaveToFile();
                                         break;
                                     }
                                 }
@@ -181,6 +240,7 @@ public class Duke {
                                     Deadline newDeadline = new Deadline(deadlineDescription, deadlineWhen);
                                     taskList.add(newDeadline);
                                     PrintTaskAdded();
+                                    SaveToFile();
                                     break;
                                 }
                                 }
@@ -200,11 +260,13 @@ public class Duke {
                             + "    2. For deadlines, please include /by _____.\n");
                     System.out.println(LINE);
                 }
+
                 catch (DukeNoInfoException e) {
                     System.out.println(LINE);
                     System.out.println(e.Feedback());
                     System.out.println(LINE);
                 }
+
                 catch (DukeNoFullInfoException e) {
                     System.out.println(LINE);
                     System.out.println(e.Feedback());

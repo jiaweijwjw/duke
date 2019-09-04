@@ -1,4 +1,8 @@
-public class Todo extends Task { // Todo class is a subclass. Task class is the superclass.
+import java.io.Serializable;
+
+public class Todo extends Task implements Serializable { // Todo class is a subclass. Task class is the superclass.
+
+    // private static final long serialVersionUID = 2L;
 
     public Todo(String description) {
         super(description);
