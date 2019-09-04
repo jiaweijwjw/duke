@@ -1,3 +1,7 @@
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
 import java.io.*;
@@ -19,9 +23,11 @@ public class Duke {
     // Obj is the type of object to be stored in List. (type-safe list)
     // List<Obj> list = new ArrayList<Obj> ();
     // a list of Tasks objects.
-    public static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static ArrayList<Task> taskList = new ArrayList<Task>();
 
-    // dd/mm/yyy
+    private static final String dateTimePattern = "dd/MM/yyyy HHmm";
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateTimePattern);
+
     private static void PrintGreeting() {
         System.out.println(LINE);
         System.out.println("   Hello! I'm Duke\n" + "   What can I do for you?\n");
@@ -209,7 +215,8 @@ public class Duke {
                                         throw new DukeNoFullInfoException(tempEventWhen[0]);
                                     } else {
                                         String eventAt = tempEventWhen[1];
-                                        Event newEvent = new Event(eventDescription, eventAt);
+                                        LocalDateTime formattedDateTime = LocalDateTime.parse(eventAt, formatter); // LocalDatetime.parse(String, DateTimeFormatter).
+                                        Event newEvent = new Event(eventDescription, formattedDateTime);
                                         taskList.add(newEvent);
                                         PrintTaskAdded();
                                         SaveToFile();
@@ -237,7 +244,8 @@ public class Duke {
                                     throw new DukeNoFullInfoException(tempDeadlineWhen[0]);
                                 } else {
                                     String deadlineWhen = tempDeadlineWhen[1];
-                                    Deadline newDeadline = new Deadline(deadlineDescription, deadlineWhen);
+                                    LocalDateTime formattedDateTime = LocalDateTime.parse(deadlineWhen, formatter);
+                                    Deadline newDeadline = new Deadline(deadlineDescription, formattedDateTime);
                                     taskList.add(newDeadline);
                                     PrintTaskAdded();
                                     SaveToFile();
@@ -270,6 +278,12 @@ public class Duke {
                 catch (DukeNoFullInfoException e) {
                     System.out.println(LINE);
                     System.out.println(e.Feedback());
+                    System.out.println(LINE);
+                }
+
+                catch (DateTimeParseException e) {
+                    System.out.println(LINE);
+                    System.out.println("    Format of Date/Time provided is incorrect.");
                     System.out.println(LINE);
                 }
 
