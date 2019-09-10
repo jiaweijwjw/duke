@@ -178,6 +178,25 @@ public class Duke {
 
                     switch (firstWord) {
 
+                        case "find":
+
+                            if (temp.length == 1) {
+                                throw new DukeNoInfoException();
+                            } else {
+                                String keyword = temp[1];
+                                int matchedCount = 0;
+                                System.out.println(LINE);
+                                System.out.println("    Here are the matching tasks in your list:");
+                                for (Task i : taskList) {
+                                    if (i.description.contains(keyword)) {
+                                        ++matchedCount;
+                                        System.out.println("    " + matchedCount + ". " + i.getTaskLabel());
+                                    }
+                                }
+                                System.out.println(LINE);
+                                break;
+                            }
+
                         case "todo":
 
                             if (temp.length == 1) {
