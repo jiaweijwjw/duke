@@ -8,7 +8,7 @@ public class TaskCommand extends Command {
     private static final String dateTimePattern = "dd/MM/yyyy HHmm";
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateTimePattern);
 
-    public String userInput;
+    private String userInput;
 
     public TaskCommand(String userInput) {
         this.userInput = userInput;

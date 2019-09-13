@@ -1,6 +1,6 @@
 public class DeleteCommand extends Command {
 
-    public String userInput;
+    private String userInput;
 
     public DeleteCommand(String userInput) {
         this.userInput = userInput;
@@ -9,8 +9,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
-        String[] temp = this.userInput.split(" ");
-
+        String[] temp = userInput.split(" ");
         try {
 
             if (temp.length == 1) {

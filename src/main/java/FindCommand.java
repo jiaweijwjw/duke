@@ -1,6 +1,6 @@
 public class FindCommand extends Command {
 
-    public String userInput;
+    private String userInput;
 
     public FindCommand(String userInput) {
         this.userInput = userInput;
@@ -9,8 +9,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
-        String[] temp = this.userInput.split(" ", 2);
-
+        String[] temp = userInput.split(" ", 2);
         try {
             if (temp.length == 1) {
                 throw new DukeNoInfoException();
