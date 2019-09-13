@@ -16,8 +16,8 @@ public class Task implements Serializable {
 
     // getter method.
     public String getStatusIcon() {
-        // if task is done, tick. if task is NOT done, cross.
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        // Returns Tick symbol if task is done and Cross symbol is task is not done.
+        return (isDone ? "\u2713" : "\u2718");
     }
 
 
