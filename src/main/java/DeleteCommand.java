@@ -16,15 +16,15 @@ public class DeleteCommand extends Command {
                 throw new DukeNoInfoException(); // user input: done 'blank'.
             } else {
                 int taskNumber = Integer.parseInt(temp[1]); // user input: done 'string'.
+                tasks.remove(taskNumber - 1); // -1 to get the index of the task in taskList. user input: done 'number not in list'.
                 ui.printAcknowledgeDelete(taskNumber, tasks);
-                tasks.remove(taskNumber - 1); // -1 to get the index of the task in myList. user input: done 'number not in list'.
                 storage.save(ui, tasks);
             }
 
         } catch (IndexOutOfBoundsException e) {
-            ui.printIndexOutOfBoundsException();
+            ui.printDeleteIndexOutOfBoundsException();
         } catch (NumberFormatException e) {
-            ui.printNumberFormatException();
+            ui.printDeleteNumberFormatException();
         } catch (DukeNoInfoException e) {
             ui.printDukeNoInfoException(e);
         }

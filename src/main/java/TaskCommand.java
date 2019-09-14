@@ -99,13 +99,9 @@ public class TaskCommand extends Command {
                         }
 
                     }
-
-                default: // none of the 3 specified type of tasks.
-                    throw new DukeException(userInput);
             }
         }
         catch (NullPointerException e) {
-            System.out.println("cheebai");
             e.printStackTrace();
         }
         catch (PatternSyntaxException e) {
@@ -119,9 +115,6 @@ public class TaskCommand extends Command {
         }
         catch (DukeNoInfoException e) {
             ui.printDukeNoInfoException(e);
-        }
-        catch (DukeException e) {
-            ui.printDukeException(e);
         }
     }
 

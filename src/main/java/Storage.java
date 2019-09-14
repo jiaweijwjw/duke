@@ -21,6 +21,8 @@ public class Storage {
             ui.printFileSaved();
         } catch (IOException e) {
             ui.printIOException(e);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
     }
 
@@ -38,10 +40,12 @@ public class Storage {
             return loadedArrayList;
         } catch (IOException e) {
             ui.printIOException(e);
+            ui.printLoadingError();
             loadedArrayList = new ArrayList<Task>();
             return loadedArrayList;
         } catch (ClassNotFoundException e) {
             ui.printClassNotFoundException(e);
+            ui.printLoadingError();
             loadedArrayList = new ArrayList<Task>();
             return loadedArrayList;
         }

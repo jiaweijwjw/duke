@@ -13,6 +13,6 @@ public class Todo extends Task implements Serializable { // Todo class is a subc
     // it will be detected and there would be compile time error. it also improves readability.
     @Override
     public String getTaskLabel() {
-        return " [D]" + super.getTaskLabel();
+        return " [T]" + super.getTaskLabel();
     }
 }

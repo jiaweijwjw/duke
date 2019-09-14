@@ -28,9 +28,9 @@ public class DoneCommand extends Command {
         }
         // if want to catch 2 exceptions that are can be handled the same way, use (exception1 | exception2).
         catch (IndexOutOfBoundsException e) {
-            ui.printIndexOutOfBoundsException();
+            ui.printDoneIndexOutOfBoundsException();
         } catch (NumberFormatException e) {
-            ui.printNumberFormatException();
+            ui.printDoneNumberFormatException();
         } catch (DukeNoInfoException e) {
             ui.printDukeNoInfoException(e);
         }

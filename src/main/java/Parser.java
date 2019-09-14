@@ -1,9 +1,8 @@
 public class Parser {
 
-    private static Command command;
-
     public static Command parse(String userInput) {
 
+        Command command;
         if (userInput.equals("list")) {
 
             command = new ListCommand();
@@ -28,6 +27,8 @@ public class Parser {
 
             command = new TaskCommand(userInput);
 
+        } else {
+            command = new UnknownCommand(userInput);
         }
         return command;
     }

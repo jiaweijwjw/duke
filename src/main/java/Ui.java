@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The User's input is read in here.
+ * Methods regarding the printing of messages to the User
+ */
 public class Ui {
 
     // final keyword for constants. constants to be in capital letters.
@@ -43,6 +47,14 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printTaskAdded(TaskList tasks) {
+        System.out.println(LINE);
+        System.out.println("    Got it. I've added this task:");
+        System.out.println("    " + tasks.get(tasks.size() - 1).getTaskLabel());
+        System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(LINE);
+    }
+
     public static void printAcknowledgeDone(int taskNumber, TaskList tasks) {
         System.out.println(LINE);
         System.out.println("    Nice! I've marked this task as done:");
@@ -56,14 +68,6 @@ public class Ui {
         System.out.println("    Noted. The task has been removed from the list.");
         // System.out.println("    " + taskList.get(taskNumber - 1).getStatusIcon() + " " + taskList.get(taskNumber - 1).getDescription());
         System.out.println("    " + tasks.get(taskNumber - 1).getTaskLabel());
-        System.out.println(LINE);
-    }
-
-    public void printTaskAdded(TaskList tasks) {
-        System.out.println(LINE);
-        System.out.println("    Got it. I've added this task:");
-        System.out.println("    " + tasks.get(tasks.size() - 1).getTaskLabel());
-        System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(LINE);
     }
 
@@ -98,21 +102,43 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public void printIndexOutOfBoundsException() {
+    public void printDoneIndexOutOfBoundsException() {
         System.out.println(LINE);
         System.out.println("    You can only mark a task in the list as done. Please input another index within the list.");
         System.out.println(LINE);
     }
 
-    public void printNumberFormatException() {
+    public void printDoneNumberFormatException() {
         System.out.println(LINE);
         System.out.println("    The item you wanted to mark as done is not provided as its index. Please input the index of the task.");
         System.out.println(LINE);
     }
 
-    public void printDukeException(DukeException e) {
+    public void printDeleteIndexOutOfBoundsException() {
+        System.out.println(LINE);
+        System.out.println("    You can only remove a task from the list. Please input another index within the list.");
+        System.out.println(LINE);
+    }
+
+    public void printDeleteNumberFormatException() {
+        System.out.println(LINE);
+        System.out.println("    The item you wanted to delete is not provided as its index. Please input the index of the task.");
+        System.out.println(LINE);
+    }
+
+    public static void printDukeException(DukeException e) {
         System.out.println(LINE);
         System.out.println(e.Feedback());
+        System.out.println(LINE);
+    }
+
+    public static void printWrongCommand(String userInput) {
+        System.out.println(LINE);
+        System.out.println( "    Sorry, " + "'" + userInput + "'" + " is an invalid command. \n"
+                + "    Duke only accept these few commands:\n"
+                + "    1. todo _____.\n"
+                + "    2. event _____ /at _____.\n"
+                + "    3. deadline _____ /by _____.\n");
         System.out.println(LINE);
     }
 

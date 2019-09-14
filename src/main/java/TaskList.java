@@ -27,7 +27,7 @@ public class TaskList implements Serializable {
         return taskList.size();
     }
 
-    public void remove(int index) {
+    public void remove(int index) throws IndexOutOfBoundsException {
 
         taskList.remove(index);
     }

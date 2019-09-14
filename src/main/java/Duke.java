@@ -10,6 +10,11 @@ public class Duke {
         tasks = new TaskList(storage.load(ui));
     }
 
+    /**
+     * The main method that runs Duke.
+     * The User's input on the command line is parsed through to make sense of the command given.
+     * Duke then executes the command respectively.
+     */
     private void run() {
         ui.printGreeting();
         boolean isExit = false;
