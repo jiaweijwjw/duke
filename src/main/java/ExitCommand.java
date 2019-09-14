@@ -1,3 +1,7 @@
+/**
+ * Enables the program to stop running.
+ * isExit() is set to true only with this command.
+ */
 public class ExitCommand extends Command {
 
     public ExitCommand() {

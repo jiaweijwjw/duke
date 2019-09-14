@@ -1,3 +1,6 @@
+/**
+ * Marks a specific task as done.
+ */
 public class DoneCommand extends Command {
 
     private String userInput;

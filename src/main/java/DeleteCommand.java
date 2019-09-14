@@ -1,3 +1,8 @@
+/**
+ * Handles the delete command. Deletes the specified task from the tasklist.
+ * If the specified task to be deleted is blank / as a String / non-existent,
+ * Duke will respond to the User accordingly.
+ */
 public class DeleteCommand extends Command {
 
     private String userInput;
@@ -7,6 +12,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
+    /**
+     * Executes the deletion of the specific task from the tasklist.
+     * Saves the file after the deletion.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
         String[] temp = userInput.split(" ");

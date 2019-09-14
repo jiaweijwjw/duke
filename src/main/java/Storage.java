@@ -3,6 +3,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Stores the list of tasks in a .txt file and retrieves the stored list
+ * whenever Duke starts up.
+ */
 public class Storage {
 
     private static String filePath;
@@ -11,6 +15,11 @@ public class Storage {
         Storage.filePath = filePath;
     }
 
+    /**
+     * Stores the TaskList tasks into a file.
+     * @param ui
+     * @param tasks
+     */
     public void save(Ui ui, TaskList tasks) {
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
@@ -26,6 +35,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Retrieves the TaskList tasks from the file and load them onto the loadedArrayList.
+     * If no file is found or there is an error loading the file, a new empty ArrayList
+     * will be returned.
+     * @param ui
+     * @return ArrayList<Task> which is the TaskList tasks which is stored in the file.
+     */
     public ArrayList<Task> load(Ui ui) {
         ArrayList<Task> loadedArrayList;
         try {

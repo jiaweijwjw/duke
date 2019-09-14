@@ -2,8 +2,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * The User's input is read in here.
- * Methods regarding the printing of messages to the User
+ * Reads in the User's input.
+ * Methods regarding interactions with the User are here.
  */
 public class Ui {
 

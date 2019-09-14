@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Creates the taskList object and contains all the methods to do basic
+ * manipulations to the list. These include adding and deleting a task
+ * from the list and getting the information of a specific task.
+ */
 public class TaskList implements Serializable {
 
     protected ArrayList<Task> taskList;

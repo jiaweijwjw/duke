@@ -1,3 +1,7 @@
+/**
+ * Handles any command that Duke does not support and reports back
+ * to the User that Duke does not support this specific command.
+ */
 public class UnknownCommand extends Command {
 
     private static String userInput;

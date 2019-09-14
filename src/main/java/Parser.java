@@ -1,5 +1,15 @@
+/**
+ * Parses through the input of the User to understand the command to be executed.
+ */
 public class Parser {
 
+    /**
+     * Understands the command that the User has input and checks if the command
+     * that the User has input is what Duke can handle. Else the command will be
+     * considered as an unknown command.
+     * @param userInput
+     * @return Specific command type by the User.
+     */
     public static Command parse(String userInput) {
 
         Command command;

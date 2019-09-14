@@ -1,3 +1,6 @@
+/**
+ * lists all the current tasks that are stored in the tasklist.
+ */
 public class ListCommand extends Command {
 
     public ListCommand() {

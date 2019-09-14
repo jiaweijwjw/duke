@@ -1,3 +1,8 @@
+/**
+ * Looks for tasks that contain substrings of a given keyword
+ * input by the User. The list of tasks which contain the keyword
+ * will then be listed out for the user.
+ */
 public class FindCommand extends Command {
 
     private String userInput;

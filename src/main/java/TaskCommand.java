@@ -3,6 +3,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.regex.PatternSyntaxException;
 
+/**
+ * Manages the tasks that the User has input.
+ * 3 main types of tasks can be handled by Duke and they are:
+ * Todo tasks, Event tasks and Deadline tasks.
+ * Event tasks and Deadline tasks have to have their time input
+ * in a correct format else an error message will be returned to the User.
+ */
 public class TaskCommand extends Command {
 
     private static final String dateTimePattern = "dd/MM/yyyy HHmm";
