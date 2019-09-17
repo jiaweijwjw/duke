@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # create bin directory if it doesn't exist
-if [ ! -d "../bin" ]
+if [ ! -d "/Users/jiawei/Desktop/duke/bin" ]
 then
-    mkdir ../bin
+    mkdir /Users/jiawei/Desktop/duke/bin
 fi
 
 # delete output from previous run
@@ -13,14 +13,14 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/Duke.java
+if ! javac -cp /Users/jiawei/Desktop/duke/src -Xlint:none -d /Users/jiawei/Desktop/duke/bin /Users/jiawei/Desktop/duke/src/main/java/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Duke < input.txt > ACTUAL.TXT
+java -classpath /Users/jiawei/Desktop/duke/bin Duke < input.txt > ACTUAL.TXT
 
 # compare the output to the expected output
 diff ACTUAL.TXT EXPECTED.TXT
